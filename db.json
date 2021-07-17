@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": 1,
         "name": "Broccoli",
         "quantity": 20,
         "category": "Vegetable",
@@ -8,7 +8,7 @@
         "imageURL": "https://chefsmandala.com/wp-content/uploads/2018/03/Broccoli-400x400.jpg"
     },
     {
-        "id": "2",
+        "id": 2,
         "name": "Kebab Doner",
         "quantity": 4,
         "category": "FullCourse",
@@ -16,7 +16,7 @@
         "imageURL": "https://b.zmtcdn.com/data/pictures/8/18511638/ab596830303a5f66d87d9b0a4466ed40_o2_featured_v2.jpg"
     },    
     {
-        "id": "3",
+        "id": 3,
         "name": "Raspberry",
         "quantity": 10,
         "category": "Fruit",
@@ -24,7 +24,7 @@
         "imageURL": "https://balidirectstore.com/wp-content/uploads/2016/12/bali-direct-raspberries-400x400-copy.jpg"
     },
     {
-        "id": "4",
+        "id": 4,
         "name": "Peach",
         "quantity": 100,
         "category": "Fruit",
@@ -32,7 +32,7 @@
         "imageURL": "https://dljproduce.com/wp-content/uploads/2019/05/1-1.jpg"
     },
     {
-        "id": "5",
+        "id": 5,
         "name": "Tomatoes",
         "quantity": 50,
         "category": "Vegetable",
