@@ -1,28 +1,15 @@
 {
-  "foods": [
+  "posts": [
     {
       "id": 1,
-      "name": "to learn angular",
-      "quantity": 10,
-      "category": "to learn angular",
+      "name": "hello",
+      "quantity": 1,
+      "category": "hello",
       "price": 1,
-      "imageURL": "to learn angular",
-    },
-    {
-      "id": 2,
-      "name": "to learn angular",
-      "quantity": 10,
-      "category": "to learn angular",
-      "price": 1,
-      "imageURL": "to learn angular",
-    },
-    {
-      "id": 3,
-      "name": "to learn angular",
-      "quantity": 10,
-      "category": "to learn angular",
-      "price": 1,
-      "imageURL": "to learn angular",
+      "imageURL": "hello"
     }
-  ]
+  ],
+  "profile": {
+    "name": "EnesCaliskan"
+  }
 }
