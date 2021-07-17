@@ -1,0 +1,47 @@
+{
+  "foods": [
+    {
+      "id": 1,
+      "name": "Sutlac",
+      "quantity": 1,
+      "category": "Dessert",
+      "price": 1,
+      "imageURL": "hello"
+    },
+    {
+      "id": 2,
+      "name": "Soup",
+      "quantity": 1,
+      "category": "Soups",
+      "price": 1,
+      "imageURL": "hello"
+    },
+    {
+      "id": 3,
+      "name": "Pizza",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "hello"
+    },
+    {
+      "id": 4,
+      "name": "Burger",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "hello"
+    },
+    {
+      "id": 5,
+      "name": "Chicken",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "hello"
+    }
+  ],
+  "profile": {
+    "name": "EnesCaliskan"
+  }
+}
