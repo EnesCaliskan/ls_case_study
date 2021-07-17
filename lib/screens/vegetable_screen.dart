@@ -17,7 +17,7 @@ List<Food> parseFoods(String responseBody) {
 
 Future<List<Food>> fetchFoods(http.Client client) async {
   final response = await client
-      .get(Uri.parse('C:\Users\EnesCaliskan\AndroidStudioProjects\ls_case_study\lib\data.json'));
+      .get(Uri.parse('https://my-json-server.typicode.com/EnesCaliskan/ls_case_study/db'));
 
   return compute(parseFoods, response.body);
 }
