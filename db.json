@@ -7,7 +7,6 @@
         "price": 10,
         "imageURL": "https://chefsmandala.com/wp-content/uploads/2018/03/Broccoli-400x400.jpg"
     },
-    
     {
         "id": "2",
         "name": "Kebab Doner",
@@ -15,8 +14,7 @@
         "category": "FullCourse",
         "price": 20,
         "imageURL": "https://b.zmtcdn.com/data/pictures/8/18511638/ab596830303a5f66d87d9b0a4466ed40_o2_featured_v2.jpg"
-    },
-    
+    },    
     {
         "id": "3",
         "name": "Raspberry",
@@ -25,7 +23,6 @@
         "price": 4,
         "imageURL": "https://balidirectstore.com/wp-content/uploads/2016/12/bali-direct-raspberries-400x400-copy.jpg"
     },
-
     {
         "id": "4",
         "name": "Peach",
@@ -34,7 +31,6 @@
         "price": 3,
         "imageURL": "https://dljproduce.com/wp-content/uploads/2019/05/1-1.jpg"
     },
-
     {
         "id": "5",
         "name": "Tomatoes",
@@ -43,4 +39,4 @@
         "price": 7,
         "imageURL": "https://gudree.com/wp-content/uploads/2019/06/tomatoes-400x400.jpg"
     }
-  ]
+]
