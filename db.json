@@ -8,7 +8,6 @@
         "price": 10,
         "imageURL": "https://chefsmandala.com/wp-content/uploads/2018/03/Broccoli-400x400.jpg"
     },
-      
     {
        "id": "1",
         "name": "test",
@@ -16,8 +15,7 @@
         "category": "Vegetable",
         "price": 10,
         "imageURL": "https://chefsmandala.com/wp-content/uploads/2018/03/Broccoli-400x400.jpg"
-    },
-      
+    }, 
     {
        "id": "1",
         "name": "test2",
@@ -25,9 +23,7 @@
         "category": "Vegetable",
         "price": 10,
         "imageURL": "https://chefsmandala.com/wp-content/uploads/2018/03/Broccoli-400x400.jpg"
-    },
-      
-      
+    }   
   ],
   "profile": {
     "name": "enes"
