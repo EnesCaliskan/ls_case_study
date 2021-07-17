@@ -1,5 +1,4 @@
 import "package:http/http.dart";
-import 'package:ls_case_study/data.json';
 import 'dart:async';
 import 'dart:convert';
 
@@ -12,8 +11,8 @@ class Food{
     final int id;
     final String name;
     final int quantity;
-    final int price;
     final String category;
+    final int price;
     final String imageURL;
 
     Food({

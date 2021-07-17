@@ -7,38 +7,24 @@ import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
 
-List<Food> parseFoods(String responseBody) {
-  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-
-  return parsed.map<Food>((json) => Food.fromJson(json)).toList();
-}
-
-Future<List<Food>> fetchFoods(http.Client client) async {
-  final response = await client
-      .get(Uri.parse('https://my-json-server.typicode.com/EnesCaliskan/ls_case_study/db'));
-
-  return compute(parseFoods, response.body);
-}
-
-
 class VegetableScreen extends StatelessWidget {
-  final Kategori category;
-  VegetableScreen({key, required this.category}) : super(key: key);
-
+  final String selectedCategory;
+  VegetableScreen({key, required this.selectedCategory}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(category.title),),
+      appBar: AppBar(title: Text(selectedCategory)),
       body: FutureBuilder<List<Food>>(
         future: fetchFoods(http.Client()),
         builder: (context, snapshot) {
           if(snapshot.hasError) print(snapshot.error);
 
           return snapshot.hasData
-              ? FoodList(foods: snapshot.data!)
+              ? FoodList(foods: snapshot.data!, selectedCat: selectedCategory,)
               : Center(child: CircularProgressIndicator());
         }
       ),
@@ -49,15 +35,24 @@ class VegetableScreen extends StatelessWidget {
 
 class FoodList extends StatelessWidget {
   final List<Food> foods;
-  const FoodList({key, required this.foods}) : super(key: key);
+  final String selectedCat;
+  const FoodList({key, required this.foods, required this.selectedCat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
+    List foodList = []; //filtering the foods from the categories
+    for(int i=0;i<foods.length;i++) {
+      if(selectedCat == foods[i].category){
+        foodList.add(foods[i].name);
+      }
+    }
+
     return ListView.builder(
-        itemCount: foods.length,
+        itemCount: foodList.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(foods[index].name),
+            title: Text(foodList[index]),
           );
         });
   }
