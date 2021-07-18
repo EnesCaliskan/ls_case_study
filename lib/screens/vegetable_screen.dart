@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ls_case_study/screens/food_screen.dart';
 import 'category_screen.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:ls_case_study/models/food.dart';
@@ -53,6 +54,9 @@ class FoodList extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(foodList[index]),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FoodScreen()));
+            },
           );
         });
   }
