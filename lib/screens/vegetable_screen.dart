@@ -20,32 +20,40 @@ class VegetableScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(selectedCategory)),
       body: FutureBuilder<List<Food>>(
-        future: fetchFoods(http.Client()),
-        builder: (context, snapshot) {
-          if(snapshot.hasError) print(snapshot.error);
+          future: fetchFoods(http.Client()),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) print(snapshot.error);
 
-          return snapshot.hasData
-              ? FoodList(foods: snapshot.data!, selectedCat: selectedCategory,)
-              : Center(child: CircularProgressIndicator());
-        }
-      ),
+            return snapshot.hasData
+                ? FoodList(
+                    foods: snapshot.data!,
+                    selectedCat: selectedCategory,
+                  )
+                : Center(child: CircularProgressIndicator());
+          }),
     );
-    
   }
 }
 
-class FoodList extends StatelessWidget {
+class FoodList extends StatefulWidget {
   final List<Food> foods;
   final String selectedCat;
-  const FoodList({key, required this.foods, required this.selectedCat}) : super(key: key);
+
+  const FoodList({key, required this.foods, required this.selectedCat})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<FoodList> createState() => _FoodListState();
+}
 
+class _FoodListState extends State<FoodList> {
+  String _selectedFood = "";
+  @override
+  Widget build(BuildContext context) {
     List foodList = []; //filtering the foods from the categories
-    for(int i=0;i<foods.length;i++) {
-      if(selectedCat == foods[i].category){
-        foodList.add(foods[i].name);
+    for (int i = 0; i < widget.foods.length; i++) {
+      if (widget.selectedCat == widget.foods[i].category) {
+        foodList.add(widget.foods[i].name);
       }
     }
 
@@ -54,8 +62,20 @@ class FoodList extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(foodList[index]),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FoodScreen()));
+            selected: foodList[index] == _selectedFood,
+            onTap: () {
+              setState(() {
+                _selectedFood = foodList[index];
+              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FoodScreen(
+                    foods: widget.foods,
+                    selectedFood: _selectedFood,
+                  ),
+                ),
+              );
             },
           );
         });

@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:ls_case_study/models/foodFetcher.dart';
+import 'package:flutter/foundation.dart';
+import 'package:ls_case_study/models/food.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:ls_case_study/models/foodFetcher.dart';
+import 'package:http/http.dart' as http;
 
 Color kYellow = const Color(0xFFFFC529);
 Color kOrange = const Color(0xFFFE724C);
@@ -8,10 +14,25 @@ Color kBlack = const Color(0xFF272D2F);
 Color kGray = const Color(0xFFD7D7D7);
 
 class FoodScreen extends StatelessWidget {
-  const FoodScreen({Key? key}) : super(key: key);
+  final List<Food> foods;
+  final String selectedFood;
+  const FoodScreen({Key? key, required this.foods, required this.selectedFood})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int selectedPrice = 0;
+    String selectedImgURL = "";
+    String selectedDesc = "";
+
+    for (int i = 0; i < foods.length; i++) {
+      if (selectedFood == foods[i].name) {
+        selectedPrice = foods[i].price;
+        selectedImgURL = foods[i].imageURL;
+        selectedDesc = foods[i].description;
+      }
+    }
+
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -29,14 +50,14 @@ class FoodScreen extends StatelessWidget {
                       IconButton(
                         icon: Icon(
                           Icons.arrow_back_ios,
-                          color: Colors.black,
+                          color: kBlack,
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                       ),
                       IconButton(
-                          icon: Icon(Icons.shopping_cart, color: Colors.black),
+                          icon: Icon(Icons.shopping_cart, color: kBlack),
                           onPressed: () {
                             Navigator.pop(context); // sepet sayfasina gidicek
                           }),
@@ -47,7 +68,7 @@ class FoodScreen extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Yemek ismi PlaceHolder', // buraya yemek ismi gelicek
+                        selectedFood, // buraya yemek ismi gelicek
                         style: TextStyle(
                           fontSize: 22.0,
                         ),
@@ -66,31 +87,60 @@ class FoodScreen extends StatelessWidget {
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
-              height: 500.0,
+              height: MediaQuery.of(context).size.width * 1.3,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(30.0),
                   topRight: Radius.circular(30.0),
                 ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: Offset(0, 3),
+                  ),
+                ],
                 color: Colors.white,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 130.0),
+                    padding: EdgeInsets.only(top: 70.0, left: 20.0),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {}, // buraya favori ozelligi gelecek
+                            icon: Icon(Icons.favorite_border),
+                          ),
+                          Text(
+                            'Add to Favorites',
+                            style: TextStyle(fontSize: 18.0, color: kBlack),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0),
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Container(
                         padding: EdgeInsets.all(30.0),
-                        height: MediaQuery.of(context).size.width * 0.5,
+                        height: MediaQuery.of(context).size.width * 0.6,
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
-                          color: Colors.yellow,
+                          color: Colors.white,
+                          border: Border.all(
+                            color: kBlack,
+                          ),
+                          borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Text(
-                          'description', // buraya aciklama gelicek
+                          selectedDesc, // buraya aciklama gelicek
                           style: TextStyle(fontSize: 18.0),
                         ),
                       ),
@@ -110,7 +160,9 @@ class FoodScreen extends StatelessWidget {
                                 style: TextStyle(fontSize: 20.0),
                               ),
                               Text(
-                                'priceholder', // buraya fiyat gelicek
+                                '₺' +
+                                    selectedPrice
+                                        .toString(), // buraya fiyat gelicek
                                 style: TextStyle(fontSize: 24.0),
                               ),
                             ],
@@ -123,14 +175,15 @@ class FoodScreen extends StatelessWidget {
                             onPressed: () {},
                             child: Text(
                               'Add to Basket',
-                              style: TextStyle(color: Colors.black),
+                              style: TextStyle(color: kBlack),
                             ),
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(kYellow),
+                              backgroundColor:
+                                  MaterialStateProperty.all<Color>(kYellow),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(28.0),
+                                  borderRadius: BorderRadius.circular(28.0),
                                 ),
                               ),
                             ),
@@ -146,8 +199,9 @@ class FoodScreen extends StatelessWidget {
           Align(
             alignment: Alignment(0.0, -0.4),
             child: CircleAvatar(
-              // buraya yemegin resmi gelecek
-              radius: 100.0,
+              backgroundImage: NetworkImage(selectedImgURL),
+              backgroundColor: Colors.transparent,
+              radius: 80.0,
             ),
           ),
         ],

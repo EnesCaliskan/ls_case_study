@@ -10,6 +10,7 @@ class FoodApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       //theme data will be added
+      theme: ThemeData(),
       home: CategoryScreen(),
     );
   }

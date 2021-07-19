@@ -21,3 +21,14 @@ dev_dependencies:
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - fonts/
+
+  fonts:
+    - family: Helvetica
+      fonts:
+        - asset: fonts/HelveticaNeueLTPro-MdCn.otf
+    - family: Helvetica Light
+      fonts:
+        - asset: fonts/HelveticaNeueLTPro-Lt.otf

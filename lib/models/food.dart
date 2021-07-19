@@ -14,6 +14,7 @@ class Food{
     final String category;
     final int price;
     final String imageURL;
+    final String description;
 
     Food({
       required this.id,
@@ -22,6 +23,7 @@ class Food{
       required this.price,
       required this.category,
       required this.imageURL,
+      required this.description,
     });
 
 
@@ -33,6 +35,7 @@ class Food{
         price: json["price"] as int,
         category: json["category"] as String,
         imageURL: json['imageURL'] as String,
+        description: json['description'] as String,
       );
     }
 

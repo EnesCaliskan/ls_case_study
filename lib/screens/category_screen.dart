@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
+import 'food_screen.dart';
 
 class CategoryScreen extends StatelessWidget {
   CategoryScreen({key}) : super(key: key);
@@ -44,7 +45,6 @@ class _CategoryListState extends State<CategoryList> {
   String _selectedIndex = "";
   @override
   Widget build(BuildContext context) {
-
     //getting rid of the duplicated categories
     List<String> categories = [];
     for (int i = 0; i < widget.foods.length; i++) {
@@ -70,4 +70,3 @@ class _CategoryListState extends State<CategoryList> {
         });
   }
 }
-
