@@ -2,11 +2,12 @@
   "foods": [
     {
       "id": 1,
-      "name": "Sutlac",
+      "name": "Muffin",
       "quantity": 1,
       "category": "Dessert",
       "price": 1,
-      "imageURL": "hello"
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/muffin.png?v=173",
+      "description": "Bu muhtesem bir muffin!"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "quantity": 1,
       "category": "Soups",
       "price": 1,
-      "imageURL": "hello"
+      "imageURL": "hello",
+      "description": "Bu muhtesem bir soup!"
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "quantity": 1,
       "category": "FastFood",
       "price": 1,
-      "imageURL": "hello"
+      "imageURL": "https://www.droetker.com.tr/Recipe/Recipes/droetker.com.tr/tr-tr/baking/image-thumb__26038__RecipeDetailsLightBox/glutensiz-pizza.jpg",
+      "description": "Bu muhtesem bir pizza!"
     },
     {
       "id": 4,
@@ -30,7 +33,8 @@
       "quantity": 1,
       "category": "FastFood",
       "price": 1,
-      "imageURL": "hello"
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/categories/urunler/burgerler-1.png?v=173",
+      "description": "Bu muhtesem bir burger!"
     },
     {
       "id": 5,
@@ -38,7 +42,62 @@
       "quantity": 1,
       "category": "FastFood",
       "price": 1,
-      "imageURL": "hello"
+      "imageURL": "https://www.antalyamigros.com/uploads/blogs/aciktiysan-kfc-082a5.jpg",
+      "description": "Bu muhtesem bir chicken!"
+    },
+    {
+      "id": 6,
+      "name": "Sufle",
+      "quantity": 1,
+      "category": "Dessert",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/sufle.png?v=173",
+      "description": "Bu muhtesem bir sufle!"
+    },
+    {
+      "id": 7,
+      "name": "Patatoes",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/patates-1.png?v=173",
+      "description": "Bu muhtesem bir patatoes!"
+    },
+    {
+      "id": 8,
+      "name": "Onion Rings",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/sogan-halkasi.png?v=173",
+      "description": "Bu muhtesem bir onion rings!"
+    },
+    {
+      "id": 9,
+      "name": "Lemonade",
+      "quantity": 1,
+      "category": "Beverages",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/limonata-1.png?v=173",
+      "description": "Bu muhtesem bir lemonade"
+    },
+    {
+      "id": 10,
+      "name": "Strawberry Milkshake",
+      "quantity": 1,
+      "category": "Beverages",
+      "price": 5,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/cilekli-milkshake.png?v=173",
+      "description": "Bu muhtesem bir strawberry milkshake"
+    },
+    {
+      "id": 11,
+      "name": "Ayran",
+      "quantity": 1,
+      "category": "Beverages",
+      "price": 5,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/ayran-300ml-1.png?v=173",
+      "description": "Bu muhtesem bir strawberry ayran"
     }
   ],
   "profile": {
