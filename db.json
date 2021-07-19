@@ -56,12 +56,12 @@
     },
     {
       "id": 7,
-      "name": "Sufle",
+      "name": "Patatoes",
       "quantity": 1,
       "category": "FastFood",
       "price": 1,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/patates-1.png?v=173",
-      "description": "Bu muhtesem bir sufle!"
+      "description": "Bu muhtesem bir patatoes!"
     },
     {
       "id": 8,
