@@ -2,12 +2,12 @@
   "foods": [
     {
       "id": 1,
-      "name": "Sutlac",
+      "name": "Muffin",
       "quantity": 1,
       "category": "Dessert",
       "price": 1,
-      "imageURL": "https://cdn.yemek.com/mnresize/1250/833/uploads/2019/05/sutlac-guncelleme-sunum-1.jpg",
-      "description": "Bu muhtesem bir sutlac!"
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/muffin.png?v=173",
+      "description": "Bu muhtesem bir muffin!"
     },
     {
       "id": 2,
@@ -44,7 +44,61 @@
       "price": 1,
       "imageURL": "https://www.antalyamigros.com/uploads/blogs/aciktiysan-kfc-082a5.jpg",
       "description": "Bu muhtesem bir chicken!"
-    }
+    },
+    {
+      "id": 6,
+      "name": "Sufle",
+      "quantity": 1,
+      "category": "Dessert",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/sufle.png?v=173",
+      "description": "Bu muhtesem bir sufle!"
+    },
+    {
+      "id": 7,
+      "name": "Sufle",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/patates-1.png?v=173",
+      "description": "Bu muhtesem bir sufle!"
+    },
+    {
+      "id": 8,
+      "name": "Onion Rings",
+      "quantity": 1,
+      "category": "FastFood",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/sogan-halkasi.png?v=173",
+      "description": "Bu muhtesem bir onion rings!"
+    },
+    {
+      "id": 9,
+      "name": "Lemonade",
+      "quantity": 1,
+      "category": "Beverages",
+      "price": 1,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/limonata-1.png?v=173",
+      "description": "Bu muhtesem bir lemonade"
+    },
+    {
+      "id": 10,
+      "name": "Strawberry Milkshake",
+      "quantity": 1,
+      "category": "Beverages",
+      "price": 5,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/cilekli-milkshake.png?v=173",
+      "description": "Bu muhtesem bir strawberry milkshake"
+    },
+    {
+      "id": 11,
+      "name": "Ayran",
+      "quantity": 1,
+      "category": "Beverages",
+      "price": 5,
+      "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/ayran-300ml-1.png?v=173",
+      "description": "Bu muhtesem bir strawberry ayran"
+    },
   ],
   "profile": {
     "name": "EnesCaliskan"
