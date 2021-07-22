@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ls_case_study/models/favorites.dart';
 import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ls_case_study/models/food.dart';
@@ -7,29 +8,69 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
+import 'favorites_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ls_case_study/models/boxes.dart';
+
 
 Color kYellow = const Color(0xFFFFC529);
 Color kOrange = const Color(0xFFFE724C);
 Color kBlack = const Color(0xFF272D2F);
 Color kGray = const Color(0xFFD7D7D7);
 
-class FoodScreen extends StatelessWidget {
+class FoodScreen extends StatefulWidget {
   final List<Food> foods;
   final String selectedFood;
   const FoodScreen({Key? key, required this.foods, required this.selectedFood})
       : super(key: key);
 
+
   @override
+  State<FoodScreen> createState() => _FoodScreenState();
+}
+
+class _FoodScreenState extends State<FoodScreen> {
+  final _saved = <String>{};
+  @override
+
+  initState(){
+    super.initState();
+  }
+
+  bool alreadySelected = false;
+  bool basketClicked = false;
+
   Widget build(BuildContext context) {
+
+    Future addFavorites(String name, String category) async {
+      final favorite = Favorites()
+        ..name = name
+        ..category = category;
+
+      final box = Boxes.getFavorites();
+
+      box.put(name, favorite);
+
+    }
+
+    Future clearSelected(String name) async {
+      final box = Boxes.getFavorites();
+      box.delete(name);
+    }
+
     int selectedPrice = 0;
     String selectedImgURL = "";
     String selectedDesc = "";
+    String selectedFoodName = "";
+    String selectedCategory = "";
 
-    for (int i = 0; i < foods.length; i++) {
-      if (selectedFood == foods[i].name) {
-        selectedPrice = foods[i].price;
-        selectedImgURL = foods[i].imageURL;
-        selectedDesc = foods[i].description;
+    for (int i = 0; i < widget.foods.length; i++) {
+      if (widget.selectedFood == widget.foods[i].name) {
+        selectedFoodName = widget.foods[i].name;
+        selectedPrice = widget.foods[i].price;
+        selectedImgURL = widget.foods[i].imageURL;
+        selectedDesc = widget.foods[i].description;
+        selectedCategory = widget.foods[i].category;
       }
     }
 
@@ -58,9 +99,11 @@ class FoodScreen extends StatelessWidget {
                       ),
                       IconButton(
                           icon: Icon(Icons.shopping_cart, color: kBlack),
-                          onPressed: () {
-                            Navigator.pop(context); // sepet sayfasina gidicek
-                          }),
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(
+                                builder: (context) => FavoriteScreen(),),);
+                          }
+                      ),
                     ],
                   ),
                   Padding(
@@ -68,7 +111,7 @@ class FoodScreen extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        selectedFood, // buraya yemek ismi gelicek
+                        widget.selectedFood, // buraya yemek ismi gelicek
                         style: TextStyle(
                           fontSize: 22.0,
                         ),
@@ -80,7 +123,12 @@ class FoodScreen extends StatelessWidget {
               height: double.infinity,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: kOrange,
+                gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [kOrange, kYellow],
+                ),
+                //color: kOrange,
               ),
             ),
           ),
@@ -113,8 +161,23 @@ class FoodScreen extends StatelessWidget {
                       child: Row(
                         children: [
                           IconButton(
-                            onPressed: () {}, // buraya favori ozelligi gelecek
-                            icon: Icon(Icons.favorite_border),
+                            onPressed: () {
+                              setState(() {
+                                alreadySelected = !alreadySelected;
+                                print(alreadySelected);
+                                if(alreadySelected){
+                                  addFavorites(selectedFoodName, selectedCategory);
+                                }
+                                else{
+                                  clearSelected(selectedFoodName);
+                                }
+                              });
+                            },
+                            icon : Icon(
+                              alreadySelected ? Icons.favorite : Icons.favorite_border,
+                              color: alreadySelected ? Colors.red : null,
+                            ),
+                            // buraya favori ozelligi gelecek
                           ),
                           Text(
                             'Add to Favorites',
@@ -170,16 +233,29 @@ class FoodScreen extends StatelessWidget {
                         ),
                         SizedBox(
                           height: 50.0,
-                          width: 120.0,
+                          width: 150.0,
                           child: TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Add to Basket',
-                              style: TextStyle(color: kBlack),
+                            onPressed: () {
+                              setState(() {
+                                basketClicked = !basketClicked;
+                              });
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  basketClicked ? Icons.check_rounded : Icons.shopping_basket,
+                                  color: basketClicked ? kYellow : kYellow,
+                                ),
+                                Text(
+                                  'Add to Basket',
+                                  style: TextStyle(color: kYellow),
+                                ),
+                              ],
                             ),
                             style: ButtonStyle(
                               backgroundColor:
-                                  MaterialStateProperty.all<Color>(kYellow),
+                                  MaterialStateProperty.all<Color>(basketClicked ? Colors.green : kOrange),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -207,5 +283,8 @@ class FoodScreen extends StatelessWidget {
         ],
       ),
     );
+
+
   }
 }
+

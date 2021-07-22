@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'category_screen.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:ls_case_study/models/favorites.dart';
 
-final names = ['cat1', 'cat2', 'cat3', 'cat4'];
+void main() async {
 
-void main() => runApp(FoodApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  
+  Hive.registerAdapter(FavoritesAdapter());
+  await Hive.openBox<Favorites>('favorites');
+
+  runApp(FoodApp());
+}
 
 class FoodApp extends StatelessWidget {
   @override

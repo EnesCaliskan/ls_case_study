@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:ls_case_study/screens/favorites_screen.dart';
 import 'package:ls_case_study/screens/food_screen.dart';
 import 'category_screen.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -18,7 +18,25 @@ class VegetableScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(selectedCategory)),
+      appBar: AppBar(
+        title: Text(selectedCategory),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoriteScreen(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.red,
+            ),
+          ),
+        ],
+      ),
       body: FutureBuilder<List<Food>>(
           future: fetchFoods(http.Client()),
           builder: (context, snapshot) {
