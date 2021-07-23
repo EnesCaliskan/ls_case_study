@@ -58,7 +58,7 @@ class _FoodScreenState extends State<FoodScreen> {
         ..name = name!
         ..category = category!
         ..price = price!
-        ..imageUrl = imageUrl!;
+        ..imageUrl = imageUrl ?? "";
 
       final box = Boxes.getCart();
       box.put(name, cartItem);

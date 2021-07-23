@@ -20,7 +20,7 @@ class CartAdapter extends TypeAdapter<Cart> {
       ..name = fields[0] as String
       ..category = fields[1] as String
       ..price = fields[2] as int
-      ..imageUrl = fields[3] as String;
+      ..imageUrl = fields[3] as String ;
   }
 
   @override

@@ -14,6 +14,6 @@ class Cart{
   late int price;
 
   @HiveField(3)
-  late String imageUrl;
+  late String imageUrl ;
 
 }
