@@ -12,6 +12,7 @@ import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
 
 class VegetableScreen extends StatelessWidget {
+
   final String selectedCategory;
   VegetableScreen({key, required this.selectedCategory}) : super(key: key);
 
