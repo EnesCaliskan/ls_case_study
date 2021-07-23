@@ -12,7 +12,6 @@ import 'package:http/http.dart' as http;
 import 'food_screen.dart';
 
 class CategoryScreen extends StatefulWidget {
-
   CategoryScreen({key}) : super(key: key);
 
   @override
@@ -22,17 +21,15 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
-
     return FutureBuilder<List<Food>>(
-          future: fetchFoods(http.Client()),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) print(snapshot.error);
+        future: fetchFoods(http.Client()),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) print(snapshot.error);
 
-            return snapshot.hasData
-                ? CategoryList(foods: snapshot.data!)
-                : Center(child: CircularProgressIndicator());
-          });
-
+          return snapshot.hasData
+              ? CategoryList(foods: snapshot.data!)
+              : Center(child: CircularProgressIndicator());
+        });
   }
 }
 
@@ -65,7 +62,9 @@ class _CategoryListState extends State<CategoryList> {
             child: Container(
               padding: EdgeInsets.all(10.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(15.0),),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15.0),
+                ),
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
@@ -73,14 +72,26 @@ class _CategoryListState extends State<CategoryList> {
                 ),
               ),
               child: ListTile(
-                title: Text(categories[index], style: TextStyle(fontSize: 18.0, color: kBlack),),
+                title: Text(
+                  categories[index],
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      color: kBlack,
+                      fontWeight: FontWeight.w600),
+                ),
                 selected: categories[index] == _selectedIndex,
                 onTap: () {
-                  setState(() { // sending the name of the selected category to food page
+                  setState(() {
+                    // sending the name of the selected category to food page
                     _selectedIndex = categories[index];
                   });
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => VegetableScreen(selectedCategory: _selectedIndex)));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          VegetableScreen(selectedCategory: _selectedIndex),
+                    ),
+                  );
                 },
               ),
             ),

@@ -8,9 +8,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:ls_case_study/screens/cart_screen.dart';
 import 'favorites_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ls_case_study/models/boxes.dart';
+import 'package:ls_case_study/models/cart.dart';
 
 
 Color kYellow = const Color(0xFFFFC529);
@@ -46,12 +48,24 @@ class _FoodScreenState extends State<FoodScreen> {
       final favorite = Favorites()
         ..name = name
         ..category = category;
-
       final box = Boxes.getFavorites();
-
       box.put(name, favorite);
+    }
+
+    Future addCartItem(String? name, String? category, int? price, String? imageUrl) async {
+
+      final cartItem = Cart()
+        ..name = name!
+        ..category = category!
+        ..price = price!
+        ..imageUrl = imageUrl!;
+
+      final box = Boxes.getCart();
+      box.put(name, cartItem);
 
     }
+
+
 
     Future clearSelected(String name) async {
       final box = Boxes.getFavorites();
@@ -101,7 +115,7 @@ class _FoodScreenState extends State<FoodScreen> {
                           icon: Icon(Icons.shopping_cart, color: kBlack),
                           onPressed: (){
                             Navigator.push(context, MaterialPageRoute(
-                                builder: (context) => FavoriteScreen(),),);
+                                builder: (context) => CartScreen(),),);
                           }
                       ),
                     ],
@@ -238,6 +252,9 @@ class _FoodScreenState extends State<FoodScreen> {
                             onPressed: () {
                               setState(() {
                                 basketClicked = !basketClicked;
+                                if(basketClicked){
+                                  addCartItem(selectedFoodName, selectedCategory, selectedPrice, selectedImgURL);
+                                }
                               });
                             },
                             child: Row(

@@ -46,8 +46,17 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                 itemCount: favorites.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text('${favorites[index].name}'),
-                    subtitle: Text('${favorites[index].category}'),
+                    title: Text(
+                      '${favorites[index].name}',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          color: kBlack,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    subtitle: Text(
+                      '${favorites[index].category}',
+                      style: TextStyle(color: kBlack),
+                    ),
                   );
                 }),
           ),
@@ -69,9 +78,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Favorites'),
-        ),
         body: ValueListenableBuilder<Box<Favorites>>(
             valueListenable: Boxes.getFavorites().listenable(),
             builder: (context, box, _) {

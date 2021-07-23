@@ -11,16 +11,29 @@ import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
 
-class VegetableScreen extends StatelessWidget {
-
+class VegetableScreen extends StatefulWidget {
   final String selectedCategory;
   VegetableScreen({key, required this.selectedCategory}) : super(key: key);
 
   @override
+  State<VegetableScreen> createState() => _VegetableScreenState();
+}
+
+class _VegetableScreenState extends State<VegetableScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(selectedCategory),
+        leading: BackButton(
+          color: kBlack,
+        ),
+        title: Center(
+          child: Text(
+            widget.selectedCategory,
+            style: TextStyle(fontSize: 18.0, color: kBlack),
+          ),
+        ),
+        backgroundColor: Colors.white,
         actions: [
           IconButton(
             onPressed: () {
@@ -46,7 +59,7 @@ class VegetableScreen extends StatelessWidget {
             return snapshot.hasData
                 ? FoodList(
                     foods: snapshot.data!,
-                    selectedCat: selectedCategory,
+                    selectedCat: widget.selectedCategory,
                   )
                 : Center(child: CircularProgressIndicator());
           }),
@@ -79,23 +92,45 @@ class _FoodListState extends State<FoodList> {
     return ListView.builder(
         itemCount: foodList.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(foodList[index]),
-            selected: foodList[index] == _selectedFood,
-            onTap: () {
-              setState(() {
-                _selectedFood = foodList[index];
-              });
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FoodScreen(
-                    foods: widget.foods,
-                    selectedFood: _selectedFood,
-                  ),
+          return Padding(
+            padding: EdgeInsets.all(7.0),
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15.0),
                 ),
-              );
-            },
+                gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [kOrange, kYellow],
+                ),
+              ),
+              child: ListTile(
+                title: Text(
+                  foodList[index],
+                  style: TextStyle(
+                      fontSize: 18.0,
+                      color: kBlack,
+                      fontWeight: FontWeight.w600),
+                ),
+                selected: foodList[index] == _selectedFood,
+                onTap: () {
+                  setState(() {
+                    _selectedFood = foodList[index];
+                  });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FoodScreen(
+                        foods: widget.foods,
+                        selectedFood: _selectedFood,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           );
         });
   }
