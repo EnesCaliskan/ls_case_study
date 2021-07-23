@@ -11,11 +11,11 @@
     },
     {
       "id": 2,
-      "name": "Soup",
+      "name": "Lentin Soup",
       "quantity": 1,
       "category": "Soups",
       "price": 1,
-      "imageURL": "https://cdn.ye-mek.net/App_UI/Img/out/650/2020/05/ascibasi-corbasi-resimli-yemek-tarifi(15).jpg",
+      "imageURL": "https://i.lezzet.com.tr/images-xxlarge-recipe/koy_corbasi-78727e65-5e32-4c1f-a103-d965c93a1a3e.jpg",
       "description": "Bu muhtesem bir soup!"
     },
     {
