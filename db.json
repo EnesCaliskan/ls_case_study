@@ -5,99 +5,99 @@
       "name": "Muffin",
       "quantity": 1,
       "category": "Dessert",
-      "price": 1,
+      "price": 2,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/muffin.png?v=173",
-      "description": "The origin of muffins appears to be unclear and greatly depends on who and where the question is asked. The ones consumed in the UK have been traditionally known as english muffins. However, these differ from the popular muffins that are consumed in the U.S., South America and other regions of the world."
+      "description": "The origin of muffins appears to be unclear and greatly depends on who and where the question is asked. The ones consumed in the UK have been traditionally known as english muffins. However, these differ from the popular muffins that are consumed in the U.S."
     },
     {
       "id": 2,
-      "name": "Lentin Soup",
+      "name": "Lentil Soup",
       "quantity": 1,
       "category": "Soups",
-      "price": 1,
+      "price": 7,
       "imageURL": "https://i.lezzet.com.tr/images-xxlarge-recipe/koy_corbasi-78727e65-5e32-4c1f-a103-d965c93a1a3e.jpg",
-      "description": "Bu muhtesem bir soup!"
+      "description": "Lentils are rich in protein, fiber, iron and folate. Lentil soup packs well for lunch in a leak-proof container, and it tastes even better the next day."
     },
     {
       "id": 3,
       "name": "Pizza",
       "quantity": 1,
       "category": "FastFood",
-      "price": 1,
+      "price": 15,
       "imageURL": "https://www.droetker.com.tr/Recipe/Recipes/droetker.com.tr/tr-tr/baking/image-thumb__26038__RecipeDetailsLightBox/glutensiz-pizza.jpg",
-      "description": "Bu muhtesem bir pizza!"
+      "description": "Pizza, dish of Italian origin consisting of a flattened disk of bread dough topped with some combination of olive oil, oregano, tomato, olives, mozzarella or other cheese, and many other ingredients, baked quickly."
     },
     {
       "id": 4,
       "name": "Burger",
       "quantity": 1,
       "category": "FastFood",
-      "price": 1,
+      "price": 10,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/categories/urunler/burgerler-1.png?v=173",
-      "description": "Bu muhtesem bir burger!"
+      "description": "A hamburger (also burger for short) is a food, typically considered a sandwich, consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread roll or bun."
     },
     {
       "id": 5,
       "name": "Chicken",
       "quantity": 1,
       "category": "FastFood",
-      "price": 1,
+      "price": 12,
       "imageURL": "https://www.antalyamigros.com/uploads/blogs/aciktiysan-kfc-082a5.jpg",
-      "description": "Bu muhtesem bir chicken!"
+      "description": "Southern fried chicken, also known simply as fried chicken, is a dish consisting of chicken pieces that have been coated with seasoned flour or batter and pan-fried, deep fried, pressure fried, or air fried."
     },
     {
       "id": 6,
-      "name": "Sufle",
+      "name": "Souffle",
       "quantity": 1,
       "category": "Dessert",
-      "price": 1,
+      "price": 5,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/sufle.png?v=173",
-      "description": "Bu muhtesem bir sufle!"
+      "description": "Souffle is a dish that is made from a sauce, egg yolks, beaten egg whites, and a flavoring or purée (as of seafood, fruit, or vegetables) and baked until puffed up."
     },
     {
       "id": 7,
       "name": "Patatoes",
       "quantity": 1,
       "category": "FastFood",
-      "price": 1,
+      "price": 3,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/patates-1.png?v=173",
-      "description": "Bu muhtesem bir patatoes!"
+      "description": "Fried potatoes are a dish or a component of other dishes essentially consisting of potatoes which have been fried or deep-fried in hot cooking oil often with the addition of salt and other seasonings."
     },
     {
       "id": 8,
       "name": "Onion Rings",
       "quantity": 1,
       "category": "FastFood",
-      "price": 1,
+      "price": 3,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/sogan-halkasi.png?v=173",
-      "description": "Bu muhtesem bir onion rings!"
+      "description": "Onion ring is a ring of sliced onion coated with batter or crumbs and fried"
     },
     {
       "id": 9,
       "name": "Lemonade",
       "quantity": 1,
       "category": "Beverages",
-      "price": 1,
+      "price": 2,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/limonata-1.png?v=173",
-      "description": "Bu muhtesem bir lemonade"
+      "description": "Lemonade is a beverage of sweetened lemon juice mixed with water."
     },
     {
       "id": 10,
       "name": "Strawberry Milkshake",
       "quantity": 1,
       "category": "Beverages",
-      "price": 5,
+      "price": 3,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/cilekli-milkshake.png?v=173",
-      "description": "Bu muhtesem bir strawberry milkshake"
+      "description": "Milkshake is a thoroughly shaken or blended drink made of milk, a flavoring syrup, and often ice cream."
     },
     {
       "id": 11,
       "name": "Ayran",
       "quantity": 1,
       "category": "Beverages",
-      "price": 5,
+      "price": 1,
       "imageURL": "https://www.burgerking.com.tr/cmsfiles/products/ayran-300ml-1.png?v=173",
-      "description": "Bu muhtesem bir strawberry ayran"
+      "description": "Ayran, is a cold savory yogurt-based beverage, popular across Western Asia, Central Asia, South Asia, Southeastern Europe and Eastern Europe. The principal ingredients are yogurt, water and salt."
     }
   ],
   "profile": {
