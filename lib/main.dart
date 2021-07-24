@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/cart.dart';
-import 'package:ls_case_study/screens/food_screen.dart';
-import 'package:ls_case_study/screens/vegetable_screen.dart';
-import 'category_screen.dart';
+import 'screens/categories/category_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ls_case_study/models/favorites.dart';
-import 'favorites_screen.dart';
-import 'cart_screen.dart';
+import 'screens/favorites/favorites_screen.dart';
+import 'screens/cart/cart_screen.dart';
 import 'package:ls_case_study/assets/constants.dart';
 
 void main() async {

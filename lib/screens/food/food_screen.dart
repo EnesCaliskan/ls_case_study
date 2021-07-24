@@ -1,16 +1,14 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/favorites.dart';
-import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:ls_case_study/screens/cart_screen.dart';
-import 'package:ls_case_study/models/boxes.dart';
+import 'package:ls_case_study/screens/cart/cart_screen.dart';
+import 'package:ls_case_study/db/boxes.dart';
 import 'package:ls_case_study/models/cart.dart';
 import 'package:ls_case_study/assets/constants.dart';
 
@@ -26,7 +24,6 @@ class FoodScreen extends StatefulWidget {
 
 class _FoodScreenState extends State<FoodScreen> {
   final _random = new Random();
-  final _saved = <String>{};
   @override
 
   initState(){
@@ -115,7 +112,7 @@ class _FoodScreenState extends State<FoodScreen> {
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        widget.selectedFood, // buraya yemek ismi gelicek
+                        widget.selectedFood,
                         style: TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w700,
@@ -133,7 +130,6 @@ class _FoodScreenState extends State<FoodScreen> {
                     end: Alignment.centerRight,
                     colors: gradients[_random.nextInt(gradients.length)],
                 ),
-                //color: kOrange,
               ),
             ),
           ),
@@ -182,11 +178,10 @@ class _FoodScreenState extends State<FoodScreen> {
                               alreadySelected ? Icons.favorite : Icons.favorite_border,
                               color: alreadySelected ? Colors.red : null,
                             ),
-                            // buraya favori ozelligi gelecek
                           ),
                           Text(
                             'Add to Favorites',
-                            style: TextStyle(fontSize: 18.0, color: kBlack),
+                            style: TextStyle(fontSize: 18.0, color: kBlack, fontWeight: FontWeight.w600),
                           ),
                         ],
                       ),
@@ -208,8 +203,8 @@ class _FoodScreenState extends State<FoodScreen> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                         child: Text(
-                          selectedDesc, // buraya aciklama gelicek
-                          style: TextStyle(fontSize: 18.0),
+                          selectedDesc,
+                          style: TextStyle(fontSize: 18.0, color: kBlack, fontWeight: FontWeight.w600),
                         ),
                       ),
                     ),
@@ -230,7 +225,7 @@ class _FoodScreenState extends State<FoodScreen> {
                               Text(
                                 '₺' +
                                     selectedPrice
-                                        .toString(), // buraya fiyat gelicek
+                                        .toString(),
                                 style: TextStyle(fontSize: 24.0),
                               ),
                             ],
@@ -255,7 +250,7 @@ class _FoodScreenState extends State<FoodScreen> {
                                 ),
                                 Text(
                                   'Add to Basket',
-                                  style: TextStyle(color: kYellow),
+                                  style: TextStyle(color: kYellow, fontSize: 14.0, fontWeight: FontWeight.w600),
                                 ),
                               ],
                             ),

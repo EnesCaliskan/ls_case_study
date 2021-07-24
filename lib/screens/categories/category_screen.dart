@@ -7,9 +7,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ls_case_study/models/foodFetcher.dart';
+import 'package:ls_case_study/repository/foodFetcher.dart';
 import 'package:http/http.dart' as http;
-import 'food_screen.dart';
+import '../food/food_screen.dart';
 import 'package:ls_case_study/assets/constants.dart';
 
 class CategoryScreen extends StatefulWidget {

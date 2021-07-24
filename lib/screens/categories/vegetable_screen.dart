@@ -2,12 +2,12 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ls_case_study/screens/food_screen.dart';
+import 'package:ls_case_study/screens/food/food_screen.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:ls_case_study/models/foodFetcher.dart';
+import 'package:ls_case_study/repository/foodFetcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:ls_case_study/assets/constants.dart';
 
@@ -74,7 +74,7 @@ class _FoodListState extends State<FoodList> {
                 color: kBlack,
               ),
               Text(
-                'Foods',
+                widget.selectedCat,
                 style: TextStyle(
                     fontSize: 20.0, color: kBlack, fontWeight: FontWeight.w700),
               ),

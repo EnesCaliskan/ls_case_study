@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'food_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ls_case_study/models/favorites.dart';
-import 'package:ls_case_study/models/boxes.dart';
+import 'package:ls_case_study/db/boxes.dart';
 import 'package:ls_case_study/assets/constants.dart';
 
 class FavoriteScreen extends StatefulWidget {

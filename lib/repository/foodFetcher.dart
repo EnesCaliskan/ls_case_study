@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ls_case_study/screens/category_screen.dart';
+import 'package:ls_case_study/screens/categories/category_screen.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
