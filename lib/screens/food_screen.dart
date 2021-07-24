@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/favorites.dart';
@@ -6,19 +8,11 @@ import 'package:flutter/foundation.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
-import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:ls_case_study/screens/cart_screen.dart';
-import 'favorites_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ls_case_study/models/boxes.dart';
 import 'package:ls_case_study/models/cart.dart';
-
-
-Color kYellow = const Color(0xFFFFC529);
-Color kOrange = const Color(0xFFFE724C);
-Color kBlack = const Color(0xFF272D2F);
-Color kGray = const Color(0xFFD7D7D7);
+import 'package:ls_case_study/assets/constants.dart';
 
 class FoodScreen extends StatefulWidget {
   final List<Food> foods;
@@ -26,12 +20,12 @@ class FoodScreen extends StatefulWidget {
   const FoodScreen({Key? key, required this.foods, required this.selectedFood})
       : super(key: key);
 
-
   @override
   State<FoodScreen> createState() => _FoodScreenState();
 }
 
 class _FoodScreenState extends State<FoodScreen> {
+  final _random = new Random();
   final _saved = <String>{};
   @override
 
@@ -53,7 +47,6 @@ class _FoodScreenState extends State<FoodScreen> {
     }
 
     Future addCartItem(String? name, String? category, int? price, String? imageUrl) async {
-
       final cartItem = Cart()
         ..name = name!
         ..category = category!
@@ -62,10 +55,7 @@ class _FoodScreenState extends State<FoodScreen> {
 
       final box = Boxes.getCart();
       box.put(name, cartItem);
-
     }
-
-
 
     Future clearSelected(String name) async {
       final box = Boxes.getFavorites();
@@ -73,7 +63,7 @@ class _FoodScreenState extends State<FoodScreen> {
     }
 
     int selectedPrice = 0;
-    String selectedImgURL = "";
+    String? selectedImgURL = "";
     String selectedDesc = "";
     String selectedFoodName = "";
     String selectedCategory = "";
@@ -128,6 +118,7 @@ class _FoodScreenState extends State<FoodScreen> {
                         widget.selectedFood, // buraya yemek ismi gelicek
                         style: TextStyle(
                           fontSize: 22.0,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                     ),
@@ -140,7 +131,7 @@ class _FoodScreenState extends State<FoodScreen> {
                 gradient: LinearGradient(
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
-                    colors: [kOrange, kYellow],
+                    colors: gradients[_random.nextInt(gradients.length)],
                 ),
                 //color: kOrange,
               ),
@@ -252,9 +243,7 @@ class _FoodScreenState extends State<FoodScreen> {
                             onPressed: () {
                               setState(() {
                                 basketClicked = !basketClicked;
-                                if(basketClicked){
-                                  addCartItem(selectedFoodName, selectedCategory, selectedPrice, selectedImgURL);
-                                }
+                                addCartItem(selectedFoodName, selectedCategory, selectedPrice, selectedImgURL);
                               });
                             },
                             child: Row(
@@ -292,7 +281,7 @@ class _FoodScreenState extends State<FoodScreen> {
           Align(
             alignment: Alignment(0.0, -0.4),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(selectedImgURL),
+              backgroundImage: NetworkImage(selectedImgURL!),
               backgroundColor: Colors.transparent,
               radius: 80.0,
             ),

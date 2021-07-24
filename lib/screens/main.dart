@@ -8,6 +8,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ls_case_study/models/favorites.dart';
 import 'favorites_screen.dart';
 import 'cart_screen.dart';
+import 'package:ls_case_study/assets/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,19 +42,14 @@ class _FoodAppState extends State<FoodApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       //theme data will be added
-      theme: ThemeData(),
+      theme: ThemeData(
+        fontFamily: 'Helvetica',
+      ),
       home: Scaffold(
-          appBar: AppBar(
-            title: Center(
-              child: Text(
-                _currentIndex == 0 ? 'Categories' : _currentIndex == 1 ? 'Favorites' : _currentIndex == 2 ? 'Basket' : '',
-                style: TextStyle(fontSize: 18.0, color: kBlack),
-              ),
-            ),
-            backgroundColor: Colors.white,
-          ),
           body: tabs[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: kOrange,
+              unselectedItemColor: kBlack,
               onTap: onTappedBar,
               currentIndex: _currentIndex,
               items: [

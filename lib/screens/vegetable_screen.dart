@@ -1,15 +1,15 @@
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:ls_case_study/screens/favorites_screen.dart';
 import 'package:ls_case_study/screens/food_screen.dart';
-import 'category_screen.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/foodFetcher.dart';
 import 'package:http/http.dart' as http;
+import 'package:ls_case_study/assets/constants.dart';
 
 class VegetableScreen extends StatefulWidget {
   final String selectedCategory;
@@ -23,34 +23,6 @@ class _VegetableScreenState extends State<VegetableScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          color: kBlack,
-        ),
-        title: Center(
-          child: Text(
-            widget.selectedCategory,
-            style: TextStyle(fontSize: 18.0, color: kBlack),
-          ),
-        ),
-        backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => FavoriteScreen(),
-                ),
-              );
-            },
-            icon: Icon(
-              Icons.favorite,
-              color: Colors.red,
-            ),
-          ),
-        ],
-      ),
       body: FutureBuilder<List<Food>>(
           future: fetchFoods(http.Client()),
           builder: (context, snapshot) {
@@ -79,6 +51,7 @@ class FoodList extends StatefulWidget {
 }
 
 class _FoodListState extends State<FoodList> {
+  final _random = new Random();
   String _selectedFood = "";
   @override
   Widget build(BuildContext context) {
@@ -89,49 +62,72 @@ class _FoodListState extends State<FoodList> {
       }
     }
 
-    return ListView.builder(
-        itemCount: foodList.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsets.all(7.0),
-            child: Container(
-              padding: EdgeInsets.all(10.0),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15.0),
-                ),
-                gradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: [kOrange, kYellow],
-                ),
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.topCenter,
+          padding: EdgeInsets.only(top: 40.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              BackButton(
+                color: kBlack,
               ),
-              child: ListTile(
-                title: Text(
-                  foodList[index],
-                  style: TextStyle(
-                      fontSize: 18.0,
-                      color: kBlack,
-                      fontWeight: FontWeight.w600),
-                ),
-                selected: foodList[index] == _selectedFood,
-                onTap: () {
-                  setState(() {
-                    _selectedFood = foodList[index];
-                  });
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FoodScreen(
-                        foods: widget.foods,
-                        selectedFood: _selectedFood,
+              Text(
+                'Foods',
+                style: TextStyle(
+                    fontSize: 20.0, color: kBlack, fontWeight: FontWeight.w700),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+              itemCount: foodList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15.0),
+                      ),
+                      gradient: LinearGradient(
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        colors: gradients[_random.nextInt(gradients.length)],
                       ),
                     ),
-                  );
-                },
-              ),
-            ),
-          );
-        });
+                    child: ListTile(
+                      title: Text(
+                        foodList[index],
+                        style: TextStyle(
+                            fontSize: 18.0,
+                            color: kBlack,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      selected: foodList[index] == _selectedFood,
+                      onTap: () {
+                        setState(() {
+                          _selectedFood = foodList[index];
+                        });
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FoodScreen(
+                              foods: widget.foods,
+                              selectedFood: _selectedFood,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              }),
+        ),
+      ],
+    );
   }
 }

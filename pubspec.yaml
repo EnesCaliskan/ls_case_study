@@ -33,7 +33,7 @@ flutter:
   fonts:
     - family: Helvetica
       fonts:
-        - asset: fonts/HelveticaNeueLTPro-MdCn.otf
-    - family: Helvetica Light
+        - asset: fonts/Helvetica.ttf
+    - family: Helvetica-Bold
       fonts:
-        - asset: fonts/HelveticaNeueLTPro-Lt.otf
+        - asset: fonts/Helvetica-Bold.ttf

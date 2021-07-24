@@ -1,13 +1,11 @@
 import "package:http/http.dart";
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Food{
-
     final int id;
     final String name;
     final int quantity;
@@ -26,7 +24,6 @@ class Food{
       required this.description,
     });
 
-
     factory Food.fromJson(Map<String, dynamic> json) {
       return Food(
         id: json['id'] as int,
@@ -38,8 +35,5 @@ class Food{
         description: json['description'] as String,
       );
     }
-
-
-
 
 }

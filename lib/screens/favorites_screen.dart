@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'food_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ls_case_study/models/favorites.dart';
 import 'package:ls_case_study/models/boxes.dart';
-import 'food_screen.dart';
+import 'package:ls_case_study/assets/constants.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({Key? key}) : super(key: key);
@@ -17,29 +16,36 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
 
-  /*
-  void dispose(){
-    Hive.close();
-    super.dispose();
-  }
-   */
-
   void initState() {
     super.initState();
   }
 
   Widget build(BuildContext context) {
+
     Future clearFavorites() async {
       final box = Boxes.getFavorites();
       box.deleteAll(box.keys);
+    }
+    Future clearSelected(String name) async {
+      final box = Boxes.getFavorites();
+      box.delete(name);
     }
 
     Widget buildContent(List<Favorites> favorites) {
       return Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
-          Flexible(
+          Container(
+            alignment: Alignment.topCenter,
+            padding: EdgeInsets.only(top: 50.0, left: 20.0),
+            child: Container(
+              alignment: Alignment.topLeft,
+              child: Text('Favorites', style: TextStyle(fontSize: 20.0, color: kBlack, fontWeight: FontWeight.w700),),
+            ),
+          ),
+          Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -57,6 +63,14 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       '${favorites[index].category}',
                       style: TextStyle(color: kBlack),
                     ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.favorite, color: Colors.red,),
+                      onPressed: (){
+                        setState(() {
+                          clearSelected(favorites[index].name);
+                        });
+                      },
+                    ),
                   );
                 }),
           ),
@@ -69,7 +83,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               },
               child: Text(
                 'Clear Favorites',
-                style: TextStyle(color: kBlack),
+                style: TextStyle(color: kBlack, fontSize: 14.0),
               ),
             ),
           ),
