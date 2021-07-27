@@ -13,8 +13,6 @@ I believe that the code can be stronger and more dynamic to use. I think that is
 ## Screen Captures
 <img src="https://user-images.githubusercontent.com/24297535/127185033-0f2d4e04-2e2b-4538-9d9e-6e6a71714489.png" width=30% height=30%>
 <img src="https://user-images.githubusercontent.com/24297535/127185297-e98243a1-6289-4298-98af-62a2cf609d9f.png" width=30% height=30%>
-<img src="https://user-images.githubusercontent.com/24297535/127185297-e98243a1-6289-4298-98af-62a2cf609d9f.png" width=30% height=30%>
+<img src="https://user-images.githubusercontent.com/24297535/127185779-eaf4a7bb-a84d-40c6-ae73-f0d471699436.png" width=30% height=30%>
 <img src="https://user-images.githubusercontent.com/24297535/127185306-415c7a33-297f-4e10-aeb0-7f8afbbad7a4.png" width=30% height=30%>
-
-
 
