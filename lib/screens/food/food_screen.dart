@@ -1,16 +1,16 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ls_case_study/models/favorites.dart';
 import 'package:flutter/foundation.dart';
 import 'package:ls_case_study/models/food.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:ls_case_study/providers/food_provider.dart';
 import 'package:ls_case_study/screens/cart/cart_screen.dart';
-import 'package:ls_case_study/db/boxes.dart';
-import 'package:ls_case_study/models/cart.dart';
 import 'package:ls_case_study/assets/constants.dart';
+import 'package:ls_case_study/widgets/FoodScreenWidgets.dart';
+import 'package:provider/provider.dart';
 
 class FoodScreen extends StatefulWidget {
   final List<Food> foods;
@@ -30,48 +30,16 @@ class _FoodScreenState extends State<FoodScreen> {
     super.initState();
   }
 
-  bool alreadySelected = false;
-  bool basketClicked = false;
-
   Widget build(BuildContext context) {
-
-    Future addFavorites(String name, String category) async {
-      final favorite = Favorites()
-        ..name = name
-        ..category = category;
-      final box = Boxes.getFavorites();
-      box.put(name, favorite);
-    }
-
-    Future addCartItem(String? name, String? category, int? price, String? imageUrl) async {
-      final cartItem = Cart()
-        ..name = name!
-        ..category = category!
-        ..price = price!
-        ..imageUrl = imageUrl ?? "";
-
-      final box = Boxes.getCart();
-      box.put(name, cartItem);
-    }
-
-    Future clearSelected(String name) async {
-      final box = Boxes.getFavorites();
-      box.delete(name);
-    }
-
-    int selectedPrice = 0;
-    String? selectedImgURL = "";
-    String selectedDesc = "";
-    String selectedFoodName = "";
-    String selectedCategory = "";
+    var foodProvider = Provider.of<FoodProvider>(context);
 
     for (int i = 0; i < widget.foods.length; i++) {
       if (widget.selectedFood == widget.foods[i].name) {
-        selectedFoodName = widget.foods[i].name;
-        selectedPrice = widget.foods[i].price;
-        selectedImgURL = widget.foods[i].imageURL;
-        selectedDesc = widget.foods[i].description;
-        selectedCategory = widget.foods[i].category;
+        foodProvider.setSelectedFoodName(widget.foods[i].name);
+        foodProvider.setSelectedPrice(widget.foods[i].price);
+        foodProvider.setSelectedImgUrl(widget.foods[i].imageURL);
+        foodProvider.setSelectedDesc(widget.foods[i].description);
+        foodProvider.setSelectedCategory(widget.foods[i].category);
       }
     }
 
@@ -89,15 +57,7 @@ class _FoodScreenState extends State<FoodScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: kBlack,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
+                      ReturnBackButton(),
                       IconButton(
                           icon: Icon(Icons.shopping_cart, color: kBlack),
                           onPressed: (){
@@ -107,19 +67,7 @@ class _FoodScreenState extends State<FoodScreen> {
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 15.0, top: 20.0),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        widget.selectedFood,
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
+                  ReturnFoodName(),
                 ],
               ),
               height: double.infinity,
@@ -154,133 +102,16 @@ class _FoodScreenState extends State<FoodScreen> {
                 color: Colors.white,
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 70.0, left: 20.0),
-                    child: Container(
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              setState(() {
-                                alreadySelected = !alreadySelected;
-                                print(alreadySelected);
-                                if(alreadySelected){
-                                  addFavorites(selectedFoodName, selectedCategory);
-                                }
-                                else{
-                                  clearSelected(selectedFoodName);
-                                }
-                              });
-                            },
-                            icon : Icon(
-                              alreadySelected ? Icons.favorite : Icons.favorite_border,
-                              color: alreadySelected ? Colors.red : null,
-                            ),
-                          ),
-                          Text(
-                            'Add to Favorites',
-                            style: TextStyle(fontSize: 18.0, color: kBlack, fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10.0),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        padding: EdgeInsets.all(30.0),
-                        height: MediaQuery.of(context).size.width * 0.6,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: kBlack,
-                          ),
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        child: Text(
-                          selectedDesc,
-                          style: TextStyle(fontSize: 18.0, color: kBlack, fontWeight: FontWeight.w600),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(30.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Price',
-                                style: TextStyle(fontSize: 20.0),
-                              ),
-                              Text(
-                                '₺' +
-                                    selectedPrice
-                                        .toString(),
-                                style: TextStyle(fontSize: 24.0),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50.0,
-                          width: 150.0,
-                          child: TextButton(
-                            onPressed: () {
-                              setState(() {
-                                basketClicked = !basketClicked;
-                                addCartItem(selectedFoodName, selectedCategory, selectedPrice, selectedImgURL);
-                              });
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  basketClicked ? Icons.check_rounded : Icons.shopping_basket,
-                                  color: basketClicked ? kYellow : kYellow,
-                                ),
-                                Text(
-                                  'Add to Basket',
-                                  style: TextStyle(color: kYellow, fontSize: 14.0, fontWeight: FontWeight.w600),
-                                ),
-                              ],
-                            ),
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all<Color>(basketClicked ? Colors.green : kOrange),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(28.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  ReturnFavoriteButton(),
+                  ReturnDescriptionPadding(),
+                  ReturnBasketButton(),
                 ],
               ),
             ),
           ),
-          Align(
-            alignment: Alignment(0.0, -0.4),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(selectedImgURL!),
-              backgroundColor: Colors.transparent,
-              radius: 80.0,
-            ),
-          ),
+          ReturnFoodImage(),
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ls_case_study/models/cart.dart';
+import 'package:ls_case_study/providers/food_provider.dart';
+import 'package:provider/provider.dart';
 import 'screens/categories/category_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -38,26 +40,31 @@ class _FoodAppState extends State<FoodApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      //theme data will be added
-      theme: ThemeData(
-        fontFamily: 'Helvetica',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FoodProvider()),
+      ],
+      child: MaterialApp(
+        //theme data will be added
+        theme: ThemeData(
+          fontFamily: 'Helvetica',
+        ),
+        home: Scaffold(
+            body: tabs[_currentIndex],
+            bottomNavigationBar: BottomNavigationBar(
+                selectedItemColor: kOrange,
+                unselectedItemColor: kBlack,
+                onTap: onTappedBar,
+                currentIndex: _currentIndex,
+                items: [
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.category), label: 'Categories'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.favorite), label: 'Favorites'),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.shopping_cart), label: 'Basket')
+                ])),
       ),
-      home: Scaffold(
-          body: tabs[_currentIndex],
-          bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: kOrange,
-              unselectedItemColor: kBlack,
-              onTap: onTappedBar,
-              currentIndex: _currentIndex,
-              items: [
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.category), label: 'Categories'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.favorite), label: 'Favorites'),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.shopping_cart), label: 'Basket')
-              ])),
     );
   }
 }

@@ -25,6 +25,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       final box = Boxes.getFavorites();
       box.deleteAll(box.keys);
     }
+
     Future clearSelected(String name) async {
       final box = Boxes.getFavorites();
       box.delete(name);

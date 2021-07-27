@@ -4,6 +4,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ls_case_study/models/cart.dart';
 import 'package:ls_case_study/db/boxes.dart';
 import 'package:ls_case_study/assets/constants.dart';
+import 'package:ls_case_study/providers/food_provider.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({Key? key}) : super(key: key);
@@ -20,6 +22,11 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    Future clearCart() async {
+      final box = Boxes.getCart();
+      box.deleteAll(box.keys);
+    }
 
     Future clearSelected(String name) async {
       final box = Boxes.getCart();
@@ -50,6 +57,7 @@ class _CartScreenState extends State<CartScreen> {
                 shrinkWrap: true,
                 itemCount: cartItems!.length,
                 itemBuilder: (context, index) {
+                  print(cartItems[index].price);
                   return Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Container(
@@ -93,6 +101,19 @@ class _CartScreenState extends State<CartScreen> {
                   );
                 }),
           ),
+          SizedBox(
+            height: 50.0,
+            width: 120.0,
+            child: TextButton(
+              onPressed: () {
+                clearCart();
+              },
+              child: Text(
+                'Clear Cart',
+                style: TextStyle(color: kBlack, fontSize: 14.0),
+              ),
+            ),
+          ),
         ],
       );
     }
@@ -104,8 +125,6 @@ class _CartScreenState extends State<CartScreen> {
               final cartItems = box.values.toSet().toList().cast<Cart>();
               return buildContent(cartItems);
             }));
-
-
 
   }
 
