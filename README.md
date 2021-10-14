@@ -1,4 +1,4 @@
-# ls_case_study
+# My Cafeteria
 
 A new Flutter application.
 
